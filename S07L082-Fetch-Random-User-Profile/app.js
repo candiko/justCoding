@@ -16,21 +16,24 @@ btn.addEventListener("click", function() {
 });
 
 //Functions
-function handleErrors(data) {
-	if(!data.ok) {
-		throw Error(data.status);
+function handleErrors(res) {
+	if(!res.ok) {
+		throw Error(res.status);
 	}
-	return data.json();
+	return res.json()
+		.then(function(res) {
+			return res.results[0]
+		});
 }
 
-function parseJSON(resp) {
+function parseJSON(data) {
 	var obj = {
-		imgUrl: resp.results[0].picture.medium,
-		firstName: resp.results[0].name.first,
-		lastName: resp.results[0].name.last,
-		username: resp.results[0].login.username,
-		email: resp.results[0].email,
-		city: resp.results[0].location.city
+		imgUrl: data.picture.medium,
+		firstName: data.name.first,
+		lastName: data.name.last,
+		username: data.login.username,
+		email: data.email,
+		city: data.location.city
 	}
 	return obj;
 }
