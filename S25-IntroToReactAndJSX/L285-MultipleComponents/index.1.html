@@ -13,6 +13,21 @@
 <body>
     <div id="app"></div>
     <script type="text/babel">
+        class HobbyList extends React.Component {
+            render() {
+                const hobbies = ['Sleeping', 'Throwin objects from top of fridge', 'Biting toes'];
+                return (
+                    <ul>
+                        {
+                            hobbies.map((h, i) => {
+                                return <li key={i}>{h}</li>
+                            })
+                        }
+                    </ul>
+                );                
+            }
+        }
+        
         class Pet extends React.Component {
             render() {
                 return(
@@ -21,11 +36,7 @@
                         <img src="./kilcik_the_queen.jpg"
                              alt="some cute cat" />
                         <h3>Hobbies:</h3>
-                        <ul>
-                            <li>Sleeping</li>
-                            <li>Throwin objects from top of fridge</li>
-                            <li>Biting toes</li>
-                        </ul>
+                        <HobbyList />
                     </div>
                 );
             }
