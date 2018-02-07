@@ -1,22 +1,32 @@
 import React, {Component} from 'react';
 import './RecipeCard.css';
+import PropTypes from 'prop-types';
 
 class RecipeCard extends Component {
+    static propTypes = {
+        title: PropTypes.string.isRequired,
+        ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+        instructions: PropTypes.string.isRequired,
+        img: PropTypes.string.isRequired
+    }
+    
     render() {
         return(
             <div className="recipe-card">
                 <img
-                    src={this.props.url}
-                    alt={this.props.name}
+                    src={this.props.img}
+                    alt={this.props.title}
                 />
-                <h2>{this.props.name}</h2>
+                <h2>{this.props.title}</h2>
                 <h4>Ingredients</h4>
                 <ul>
-                    <li>Blah</li>
+                    {this.props.ingredients.map((i, index) => (
+                        <li>{i}</li>
+                    ))}
                 </ul>
                 <h4>Directions</h4>
                 <ul>
-                    <li>Blah</li>
+                    <li>{this.props.instructions}</li>
                 </ul>
             </div>
         );
