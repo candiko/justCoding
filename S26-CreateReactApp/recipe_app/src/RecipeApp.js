@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecipeList from './RecipeList';
+import RecipeInput from './RecipeInput';
 import Navbar from './Navbar';
 
 class RecipeApp extends Component {
@@ -46,9 +47,10 @@ class RecipeApp extends Component {
     return (
       <div className="recipe-app">
         <Navbar />
+        <RecipeInput />
         <div className="recipe-cards">
-          <RecipeList recipes={this.state.recipes} />          
-        </div>        
+          <RecipeList recipes={this.state.recipes} />
+        </div>
       </div>
     );
   }
