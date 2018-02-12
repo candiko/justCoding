@@ -7,27 +7,31 @@ class RecipeCard extends Component {
     title: PropTypes.string.isRequired,
     ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
     instructions: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired
+    img: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    onDelete: PropTypes.func.isRequired,
   }
     
   render() {
+    const {title, ingredients, instructions, img, id, onDelete} = this.props;
     return(
       <div className="recipe-card">
         <img
-          src={this.props.img}
-          alt={this.props.title}
+          src={img}
+          alt={title}
         />
-        <h2>{this.props.title}</h2>
+        <h2>{title}</h2>
         <h4>Ingredients</h4>
         <ul>
-          {this.props.ingredients.map((i, index) => (
+          {ingredients.map((i, index) => (
             <li key={index}>{i}</li>
           ))}
         </ul>
         <h4>Directions</h4>
         <ul>
-          <li>{this.props.instructions}</li>
+          <li>{instructions}</li>
         </ul>
+        <button onClick={() => onDelete(id)}>DELETE</button>
       </div>
     );
   }
