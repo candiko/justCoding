@@ -9,7 +9,7 @@ class RecipeApp extends Component {
     this.state = {
       recipes: [
         {
-          id: 1,
+          id: 0,
           title: 'Fried Cauliflowers',
           ingredients: ['1 head cauliflower, broken into small florets',
             '1 cup cracker crumbs',
@@ -19,7 +19,7 @@ class RecipeApp extends Component {
           img: 'img/fried_cauliflower.jpg'
         },
         {
-          id: 2,
+          id: 1,
           title: 'Hamburger',
           ingredients: ['2 pounds ground beef',
             '2 tablespoons Worcestershire sauce',
@@ -29,7 +29,7 @@ class RecipeApp extends Component {
           img: 'img/hamburger.jpg'
         },
         {
-          id: 3,
+          id: 2,
           title: 'Noodles',
           ingredients: ['7 ounces steam fried Chinese noodles',
             '6 slices ginger',
@@ -41,13 +41,24 @@ class RecipeApp extends Component {
       ],
       nextRecipeId: 3,
     }
+    this.handleSave = this.handleSave.bind(this);
+  }
+
+  handleSave(recipe) {
+    this.setState((prevState, props) => {
+      const newRecipe = {...recipe, id:this.state.nextRecipeId};
+      return {
+        nextRecipeId: prevState.nextRecipeId + 1,
+        recipes: [...this.state.recipes, newRecipe],
+      }
+    });
   }
 
   render() {
     return (
       <div className="recipe-app">
         <Navbar />
-        <RecipeInput />
+        <RecipeInput onSave={this.handleSave} />
         <div className="recipe-cards">
           <RecipeList recipes={this.state.recipes} />
         </div>
